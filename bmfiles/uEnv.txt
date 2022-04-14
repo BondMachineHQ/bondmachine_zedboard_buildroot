@@ -1,12 +1,1 @@
-setenv devicetree_image devicetree.dtb
-load mmc 0 ${devicetree_load_address} ${devicetree_image}
-setenv kernel_image uImage
-load mmc 0 ${kernel_load_address} ${kernel_image}
-setenv ramdisk_image uramdisk.image.gz
-load mmc 0 ${ramdisk_load_address} ${ramdisk_image}
-setenv bitstream_image bondmachine.bin
-setenv bitstream_type load
-setenv bitstream_load_address 0x1000000
-load mmc 0 ${bitstream_load_address} ${bitstream_image}
-fpga ${bitstream_type} 0 ${bitstream_load_address} ${filesize}
-bootm ${kernel_load_address} ${ramdisk_load_address} ${devicetree_load_address}
+bootcmd=setenv devicetree_image devicetree.dtb;load mmc 0 ${devicetree_load_address} ${devicetree_image};setenv kernel_image uImage;load mmc 0 ${kernel_load_address} ${kernel_image};setenv ramdisk_image uramdisk.image.gz;load mmc 0 ${ramdisk_load_address} ${ramdisk_image};setenv bitstream_image bondmachine.bin;setenv bitstream_type load;setenv bitstream_load_address 0x1000000;load mmc 0 ${bitstream_load_address} ${bitstream_image};fpga ${bitstream_type} 0 ${bitstream_load_address} ${filesize};bootm ${kernel_load_address} ${ramdisk_load_address} ${devicetree_load_address}
